@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const productTitle = productItem.getAttribute("data-title");
 
       // Gửi yêu cầu Ajax để thêm vào giỏ hàng
-      fetch("add_to_cart.php", {
+      fetch("/PHP/add_to_cart.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",

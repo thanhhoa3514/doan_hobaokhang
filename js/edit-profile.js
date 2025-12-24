@@ -43,9 +43,8 @@ const showMessage = (message, isSuccess) => {
   userInfoContainer.style.height = "380px";
   messageDiv.style.display = "block";
   messageDiv.style.color = isSuccess ? "green" : "red";
-  messageDiv.innerHTML = `<div class="${
-    isSuccess ? "success-message" : "error-message"
-  }">${message}</div>`;
+  messageDiv.innerHTML = `<div class="${isSuccess ? "success-message" : "error-message"
+    }">${message}</div>`;
 };
 
 //=======================================================================================================================
@@ -134,7 +133,7 @@ const saveUserInfo = () => {
   const editButton = document.querySelector(".btn-edit-user-info");
   const userInfoContainer = document.getElementById("user-info-container");
 
-  fetch("update-user.php", {
+  fetch("/PHP/update-user.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

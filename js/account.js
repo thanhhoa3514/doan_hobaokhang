@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
       formData.append("username", username);
       formData.append("password", password);
 
-      fetch("login-register/login.php", {
+      fetch("/PHP/login-register/login.php", {
         method: "POST",
         body: formData,
       })
@@ -156,15 +156,14 @@ document.addEventListener("DOMContentLoaded", function () {
           messageDiv.style.color = data.success ? "green" : "red";
           messageDiv.style.marginTop = "10px";
 
-          messageDiv.innerHTML = `<div class="${
-            data.success ? "success-message" : "error-message"
-          }">${data.message}</div>`;
+          messageDiv.innerHTML = `<div class="${data.success ? "success-message" : "error-message"
+            }">${data.message}</div>`;
 
           if (data.success) {
             setTimeout(() => {
               document.getElementById("modal").classList.remove("active");
               document.getElementById("login-container").style.display = "none";
-        
+
               if (data.user_role && data.user_role === "Admin") {
                 window.location.href = "admin.php";
               } else {
@@ -228,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
       formData.append("password", password);
       formData.append("confirm_password", confirm_password);
 
-      fetch("login-register/register.php", {
+      fetch("/PHP/login-register/register.php", {
         method: "POST",
         body: formData,
       })
@@ -277,8 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loginContainer.style.height = "520px";
     messageDiv.style.color = isSuccess ? "green" : "red";
 
-    messageDiv.innerHTML = `<div class="${
-      isSuccess ? "success-message" : "error-message"
-    }">${message}</div>`;
+    messageDiv.innerHTML = `<div class="${isSuccess ? "success-message" : "error-message"
+      }">${message}</div>`;
   };
 });
