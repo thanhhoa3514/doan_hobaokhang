@@ -709,7 +709,7 @@ function getSortIcon($field, $current_sort, $current_order)
             }
 
             // Tạo đường dẫn tuyệt đối đến thư mục PHP
-            window.location.href = window.location.origin + '/DOAN_WEB2/PHP/' + page;
+            window.location.href = '/PHP/' + page;
          });
       });
 

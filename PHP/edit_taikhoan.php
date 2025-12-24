@@ -637,7 +637,7 @@ function getSortIcon($field, $current_sort, $current_order)
                default:
                   page = 'edit_taikhoan.php';
             }
-            window.location.href = window.location.origin + '/DOAN_WEB2/PHP/' + page;
+            window.location.href = '/PHP/' + page;
          });
       });
 
