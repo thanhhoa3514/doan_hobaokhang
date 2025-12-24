@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # Web Server (PHP + Apache)
+  web:
+    build: .
+    container_name: bookstore_web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=root123
+      - DB_NAME=WEB2_BookStore
+    depends_on:
+      - db
+    networks:
+      - bookstore_network
+
+  # Database Server (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: bookstore_db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: WEB2_BookStore
+    volumes:
+      - ./database/WEB2_BookStore.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/mysql
+    networks:
+      - bookstore_network
+
+  # phpMyAdmin (Optional - để quản lý database)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: bookstore_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root123
+    depends_on:
+      - db
+    networks:
+      - bookstore_network
+
+networks:
+  bookstore_network:
+    driver: bridge
+
+volumes:
+  db_data:

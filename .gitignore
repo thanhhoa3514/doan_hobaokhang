@@ -1,0 +1,11 @@
+.env
+.DS_Store
+*.log
+.vscode
+.idea
+node_modules
+vendor/
+*.swp
+*.swo
+*~
+.git/
