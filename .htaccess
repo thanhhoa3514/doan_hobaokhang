@@ -1,14 +1,18 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    # Redirect to HTTPS (nếu có SSL)
-    # RewriteCond %{HTTPS} off
-    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    # Redirect các file .php từ root vào thư mục PHP/
+    # Ví dụ: /giohang.php → /PHP/giohang.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} ^/([a-zA-Z0-9_-]+\.php)$
+    RewriteRule ^([a-zA-Z0-9_-]+\.php)$ /PHP/$1 [L,QSA]
     
     # Redirect to homepage if accessing root
     RewriteCond %{REQUEST_URI} ^/$
     RewriteRule ^(.*)$ /PHP/trangchu.php [L]
 </IfModule>
+
 
 # Bật compression
 <IfModule mod_deflate.c>
