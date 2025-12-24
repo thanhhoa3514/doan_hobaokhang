@@ -128,18 +128,34 @@ DOAN_WEB2/
 
 **📖 Chi tiết:** Xem file [DOCKER_LOCAL_TEST.md](DOCKER_LOCAL_TEST.md)
 
-### Cách 3: Deploy lên Render.com (Production)
+### Cách 3: Deploy lên Render.com + TiDB Cloud (Production - Miễn phí)
 
 **📖 Chi tiết:** Xem file [DEPLOY_RENDER.md](DEPLOY_RENDER.md)
 
-**Tóm tắt:**
-1. Push code lên GitHub
-2. Tạo MySQL database trên Render
-3. Tạo Web Service từ GitHub repo
-4. Thêm environment variables
-5. Deploy tự động!
+**Stack:**
+- **Web Server:** Render.com (Free - Docker)
+- **Database:** TiDB Cloud (Free - MySQL-compatible, 5GB)
 
-## 👤 Tài khoản mặc định
+**Tóm tắt:**
+1. Tạo TiDB Cloud cluster (MySQL-compatible)
+2. Import database vào TiDB
+3. Push code lên GitHub
+4. Tạo Web Service trên Render từ GitHub repo
+5. Thêm DATABASE_URL từ TiDB vào Render environment variables
+6. Deploy tự động!
+
+**Ưu điểm:**
+- ✅ Hoàn toàn miễn phí
+- ✅ MySQL native (không cần migrate)
+- ✅ Auto-deploy từ Git
+- ✅ SSL miễn phí
+- ✅ Professional setup
+
+**Nhược điểm:**
+- ⚠️ Sleep sau 15 phút (web) và 1 giờ (database)
+- ⚠️ Cold start ~30-60s
+
+**Phù hợp cho:** Đồ án, Portfolio, Demo
 
 ### Admin
 - **Username:** Le Van C

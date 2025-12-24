@@ -1,5 +1,5 @@
 # Render Blueprint Configuration
-# File này giúp deploy tự động lên Render.com
+# Deploy BookStore lên Render.com với TiDB Cloud
 
 services:
   # Web Service
@@ -10,25 +10,17 @@ services:
     plan: free
     branch: main
     healthCheckPath: /PHP/health.php
+    
+    # Environment Variables
     envVars:
-      - key: DB_HOST
-        sync: false
-      - key: DB_USER
-        sync: false
-      - key: DB_PASSWORD
-        sync: false
-      - key: DB_NAME
-        sync: false
+      # DATABASE_URL từ TiDB Cloud
+      # Thêm manual trong Render Dashboard
+      # Format: mysql://username:password@host:port/database?ssl-mode=VERIFY_IDENTITY
       - key: DATABASE_URL
-        fromDatabase:
-          name: bookstore-db
-          property: connectionString
+        sync: false
+        # Value sẽ được thêm trong Render Dashboard
 
-# Database (MySQL)
-databases:
-  - name: bookstore-db
-    databaseName: WEB2_BookStore
-    user: bookstore_user
-    region: singapore
-    plan: free
-    # Render sẽ tự động tạo password
+# Note: Database dùng TiDB Cloud (external)
+# Không cần provision database trong Render
+# Hướng dẫn setup TiDB Cloud xem file DEPLOY_RENDER.md
+
