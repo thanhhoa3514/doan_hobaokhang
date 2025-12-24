@@ -1,0 +1,34 @@
+# Render Blueprint Configuration
+# File này giúp deploy tự động lên Render.com
+
+services:
+  # Web Service
+  - type: web
+    name: bookstore-web
+    env: docker
+    region: singapore
+    plan: free
+    branch: main
+    healthCheckPath: /PHP/health.php
+    envVars:
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bookstore-db
+          property: connectionString
+
+# Database (MySQL)
+databases:
+  - name: bookstore-db
+    databaseName: WEB2_BookStore
+    user: bookstore_user
+    region: singapore
+    plan: free
+    # Render sẽ tự động tạo password
